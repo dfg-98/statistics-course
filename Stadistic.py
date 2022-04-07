@@ -81,3 +81,21 @@ print(dev)
 # Variance COEFFICIENT
 var_coef = dev / mean
 print(var_coef)
+
+# Intervalo de Confianza de la Media
+mean_estimator = 0
+for i in range(len(df[var_name])):
+    mean_estimator=mean_estimator+df[var_name][i]
+mean_estimator=mean_estimator/len(df)
+low_limit_mean = mean_estimator - 2 * variance / math.sqrt(len(df))
+top_limit_mean = mean_estimator + 2 * variance / math.sqrt(len(df))
+print("El intervalo de confianza para la media es entre " + str(low_limit_mean) + " y " + str(top_limit_mean))
+
+# Intervalo de Confianza para la Varianza
+variance_estimator = 0
+for i in range(len(df[var_name])):
+    variance_estimator = variance_estimator+(df[var_name][i]-mean_estimator)**2
+variance_estimator = variance_estimator/(len(df)-1)
+low_limit_variance = (len(df)-1)*variance_estimator/((len(df)-1) * 2 ** 2)
+top_limit_variance = (len(df)-1)*variance_estimator/((len(df)-1) * 2 ** 2)
+print("El intervalo de confianza para la varianza es entre " + str(low_limit_variance) + " y " + str(top_limit_variance))
